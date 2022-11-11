@@ -1,7 +1,9 @@
+import Movies from './pages/Movies'
+
 function App() {
   return (
     <div>
-      <h1>Home Page</h1>
+      <Movies />
     </div>
   )
 }
