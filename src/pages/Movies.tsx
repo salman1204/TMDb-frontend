@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { getGenresList } from '../apis/genres'
+import MainLayout from '../layouts/MainLayout/MainLayout'
 import { QUERY_GENRES_LIST } from '../utils/constants/queryKeys'
 
 const Movies = () => {
@@ -10,7 +11,13 @@ const Movies = () => {
   )
 
   console.log(data)
-  return <div>Enter</div>
+  return (
+    <>
+      <MainLayout>
+        <h1>Movie</h1>
+      </MainLayout>
+    </>
+  )
 }
 
 export default Movies
