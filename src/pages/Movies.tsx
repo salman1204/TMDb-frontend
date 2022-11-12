@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
+import Container from 'react-bootstrap/Container'
 import { getGenresList } from '../apis/genres'
-import MoviesBlockByGenre from '../components/MoviesBlockByGenre'
-import MainLayout from '../layouts/MainLayout/MainLayout'
+import MoviesBlockByGenre from '../components/MoviesBlockByGenre/MoviesBlockByGenre'
 import { QUERY_GENRES_LIST } from '../utils/constants/queryKeys'
 import { genreProps } from '../utils/types/genre'
 
@@ -15,15 +15,13 @@ const Movies = () => {
 
   // console.log(data)
   return (
-    <>
-      <MainLayout>
-        {!isLoading &&
-          genresList?.genres?.map((genre: genreProps) => {
-            return <MoviesBlockByGenre key={genre.id} genre={genre} />
-          })}
-        <h1>Recently Viewed Movies</h1>
-      </MainLayout>
-    </>
+    <Container>
+      {!isLoading &&
+        genresList?.genres?.map((genre: genreProps) => {
+          return <MoviesBlockByGenre key={genre.id} genre={genre} />
+        })}
+      <h1>Recently Viewed Movies</h1>
+    </Container>
   )
 }
 
