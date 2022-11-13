@@ -14,12 +14,9 @@ const Genre = () => {
     {}
   )
 
-  console.log(data)
   return (
     <Container>
-      <div className="text-light text-center">
-        {/* <h1 className='pt-5' style={{color:"#f5c518"}}>Top 10 {genreId} Movies</h1> */}
-      </div>
+      <div className="text-light text-center"></div>
       <div className="d-flex justify-content-center flex-wrap mx-auto row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5">
         {!isLoading &&
           data?.results?.slice(0, 10)?.map((movie: movie) => {
