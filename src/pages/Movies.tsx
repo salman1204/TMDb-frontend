@@ -20,7 +20,7 @@ const Movies = () => {
         genresList?.genres?.map((genre: genreProps) => {
           return <MoviesBlockByGenre key={genre.id} genre={genre} />
         })}
-      <h1>Recently Viewed Movies</h1>
+      <div>Recently Viewed Movies</div>
     </Container>
   )
 }

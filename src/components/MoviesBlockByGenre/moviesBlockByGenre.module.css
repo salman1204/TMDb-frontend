@@ -29,3 +29,14 @@
   left: 100%;
   margin-left: 15px;
 }
+
+.strike > span > a {
+  text-decoration: none !important;
+  color: #f5c518;
+  transition: all 1s;
+}
+
+.strike > span > a:hover {
+  color: #ad8f20;
+  transition: all 0.5s;
+}
