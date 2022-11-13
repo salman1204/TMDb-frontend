@@ -3,6 +3,7 @@ import { Col, Container, Row } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
 import { getMovieDetails } from '../apis/movies'
 import { QUERY_MOVIES_DETAILS } from '../utils/constants/queryKeys'
+import RelatedMovies from './RelatedMovies'
 
 const MovieDetails = () => {
   const { movieId } = useParams()
@@ -11,7 +12,8 @@ const MovieDetails = () => {
     () => getMovieDetails(movieId),
     {}
   )
-  console.log(data)
+
+  // console.log(data)
   return (
     <Container>
       {!isLoading && (
@@ -23,8 +25,11 @@ const MovieDetails = () => {
             />
           </Col>
           <Col>
-            <div className="mx-auto mx-lg-0 text-light mt-5" style={{width: '85%'}}>
-              <h1 style={{color: '#f5c518'}}>{data?.title}</h1>
+            <div
+              className="mx-auto mx-lg-0 text-light mt-5"
+              style={{ width: '85%' }}
+            >
+              <h1 style={{ color: '#f5c518' }}>{data?.title}</h1>
               <h1>Rating: {data?.vote_average}</h1>
               <p>Overview: {data?.overview}</p>
               <h1>
@@ -37,6 +42,7 @@ const MovieDetails = () => {
           </Col>
         </Row>
       )}
+      <RelatedMovies movieId={movieId} />
     </Container>
   )
 }

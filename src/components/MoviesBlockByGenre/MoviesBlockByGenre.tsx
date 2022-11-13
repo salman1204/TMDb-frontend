@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 import { Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { getMoviesListByGenre } from '../../apis/movies'
+import { handleShuffleMovies } from '../../services/handleShuffleMovies'
 import { QUERY_MOVIES_LIST } from '../../utils/constants/queryKeys'
 import { genreProps } from '../../utils/types/genre'
 import { movie } from '../../utils/types/movie'
@@ -19,25 +20,10 @@ const MoviesBlockByGenre: React.FC<Props> = ({ genre }) => {
   )
   // console.log(data, 'Movies by Genre')
 
-  const handleShuffleMovies = (array: any[]) => {
-    let currentIndex = array.length,
-      randomIndex
-
-    while (currentIndex !== 0) {
-      randomIndex = Math.floor(Math.random() * currentIndex)
-      currentIndex--
-      ;[array[currentIndex], array[randomIndex]] = [
-        array[randomIndex],
-        array[currentIndex],
-      ]
-    }
-    return array.slice(0, 5)
-  }
-
   let randomMovies
 
   if (!isLoading && data !== undefined) {
-    randomMovies = handleShuffleMovies(data.results)
+    randomMovies = handleShuffleMovies(data.results).slice(0, 5)
   }
 
   return (
