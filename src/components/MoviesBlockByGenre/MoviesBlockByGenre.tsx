@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
-import { Row } from 'react-bootstrap'
+import { Button, Row } from 'react-bootstrap'
+import { HiChevronDoubleRight } from 'react-icons/hi'
 import { Link } from 'react-router-dom'
 import { getMoviesListByGenre } from '../../apis/movies'
 import { handleShuffleMovies } from '../../services/handleShuffleMovies'
@@ -37,6 +38,16 @@ const MoviesBlockByGenre: React.FC<Props> = ({ genre }) => {
         {randomMovies?.map((movie: movie) => {
           return <SingleMoviePreview key={movie.id} movie={movie} />
         })}
+      </div>
+      <div className="d-flex justify-content-center justify-content-lg-end mt-3 ">
+        <Button size="sm" variant="warning">
+          <Link
+            to={`/genre/${genre.id}`}
+            className="text-decoration-none text-dark"
+          >
+            See Popular {genre.name} Movies <HiChevronDoubleRight />{' '}
+          </Link>
+        </Button>
       </div>
     </Row>
   )
