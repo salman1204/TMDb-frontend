@@ -12,7 +12,10 @@ const Movies = () => {
     data: genresList,
     error,
     refetch,
-  } = useQuery([QUERY_GENRES_LIST], () => getGenresList(), {})
+  } = useQuery([QUERY_GENRES_LIST], () => getGenresList(), {
+    refetchOnMount: 'always',
+    refetchOnWindowFocus: false,
+  })
 
   // console.log(data)
   return (
@@ -21,8 +24,7 @@ const Movies = () => {
         genresList?.genres?.map((genre: genreProps) => {
           return <MoviesBlockByGenre key={genre.id} genre={genre} />
         })}
-        {localStorage.hasOwnProperty('movies') &&  <RecentlyVisitedMovies />}
-     
+      {localStorage.hasOwnProperty('movies') && <RecentlyVisitedMovies />}
     </Container>
   )
 }

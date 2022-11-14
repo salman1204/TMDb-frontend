@@ -5,6 +5,7 @@ import { HiChevronDoubleRight } from 'react-icons/hi'
 import { Link } from 'react-router-dom'
 import { getMoviesListByGenre } from '../../apis/movies'
 import { handleShuffleMovies } from '../../services/handleShuffleMovies'
+import { useStore } from '../../store/genreStore'
 import { QUERY_MOVIES_LIST } from '../../utils/constants/queryKeys'
 import { genreProps } from '../../utils/types/genre'
 import { movie } from '../../utils/types/movie'
@@ -15,6 +16,8 @@ interface Props {
 }
 
 const MoviesBlockByGenre: React.FC<Props> = ({ genre }) => {
+  const { setCurrentGenre } = useStore()
+
   const { isLoading, data, error, refetch } = useQuery(
     [QUERY_MOVIES_LIST, genre.id],
     () => getMoviesListByGenre(genre.id),
@@ -32,7 +35,12 @@ const MoviesBlockByGenre: React.FC<Props> = ({ genre }) => {
     <Row className="mx-auto">
       <h1 className={`my-3 ${styles.strike}`} style={{ color: '#f5c518' }}>
         <span>
-          <Link to={`/genre/${genre.id}`}>{genre.name}</Link>
+          <Link
+            to={`/genre/${genre.id}`}
+            onClick={() => setCurrentGenre(genre.name)}
+          >
+            {genre.name}
+          </Link>
         </span>
       </h1>
       <div className="d-flex justify-content-center flex-wrap my-2 mx-auto">
@@ -45,6 +53,7 @@ const MoviesBlockByGenre: React.FC<Props> = ({ genre }) => {
           <Link
             to={`/genre/${genre.id}`}
             className="text-decoration-none text-dark"
+            onClick={() => setCurrentGenre(genre.name)}
           >
             See Popular {genre.name} Movies <HiChevronDoubleRight />{' '}
           </Link>

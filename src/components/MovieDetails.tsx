@@ -13,7 +13,7 @@ const MovieDetails = () => {
   const { isLoading, data, error, refetch } = useQuery(
     [QUERY_MOVIES_DETAILS, movieId],
     () => getMovieDetails(movieId),
-    {}
+    {refetchOnMount: 'always', refetchOnWindowFocus: false}
   )
 
   useEffect(() => {
