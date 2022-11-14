@@ -1,5 +1,6 @@
-import { Col } from 'react-bootstrap'
+import { Button, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import { useStore } from '../../store/watchlistStore'
 import { movie } from '../../utils/types/movie'
 import styles from './singleMoviePreview.module.css'
 
@@ -8,6 +9,10 @@ interface Props {
 }
 
 const SingleMoviePreview: React.FC<Props> = ({ movie }) => {
+  const { watchlist, setWatchlist } = useStore()
+
+  // console.log(watchlist)
+
   const handleRecntleyVisitedMovies = () => {
     if (localStorage.hasOwnProperty('movies')) {
       let movies = JSON.parse(localStorage.getItem('movies') || '[]')
@@ -34,6 +39,18 @@ const SingleMoviePreview: React.FC<Props> = ({ movie }) => {
       localStorage.setItem('movies', JSON.stringify([...movies]))
     }
   }
+
+  const handleWatchList = (movie: movie) => {
+    const checkMovieExists = watchlist.some(
+      (watchlist) => watchlist.id === movie.id
+    )
+    if (!checkMovieExists) {
+      setWatchlist(movie)
+    } else {
+      return 0
+    }
+  }
+
   return (
     <Col className={`text-center mt-5 ${styles.zoom}`}>
       <Link
@@ -49,6 +66,9 @@ const SingleMoviePreview: React.FC<Props> = ({ movie }) => {
           {movie.title || movie.original_title}
         </h6>
       </Link>
+      <Button variant="warning" onClick={() => handleWatchList(movie)}>
+        Add to watchlist
+      </Button>
     </Col>
   )
 }

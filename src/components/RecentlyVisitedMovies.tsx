@@ -11,7 +11,7 @@ const RecentlyVisitedMovies = () => {
       <h1 className={`my-3 ${styles.strike}`} style={{ color: '#f5c518' }}>
         <span>Recently Visited Movies</span>
       </h1>
-      <div className="d-flex justify-content-start flex-wrap my-2 mx-auto">
+      <div className="d-flex justify-content-start flex-wrap my-2 mb-5 mx-auto">
         {movies?.map((movie: movie) => {
           return <SingleMoviePreview key={nanoid()} movie={movie} />
         })}

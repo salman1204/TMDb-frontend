@@ -5,6 +5,7 @@ import MainLayout from './layouts/MainLayout/MainLayout'
 import Genre from './pages/Genre'
 import Movies from './pages/Movies'
 import PageNotFound from './pages/PageNotFound'
+import Watchlist from './pages/Watchlist'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
             <Route path="/movies" element={<Movies />} />
             <Route path="/genre/:genreId" element={<Genre />} />
             <Route path="/movies/:movieId" element={<MovieDetails />} />
+            <Route path="/watchlist" element={<Watchlist />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </BrowserRouter>
