@@ -4,19 +4,25 @@ import { movie } from '../utils/types/movie'
 
 interface Watchlist {
   watchlist: movie[]
-  setWatchlist: (payload: movie) => void
+  addToWatchlist: (payload: movie) => void
+  removeFromWatchlist: (id: number) => void
 }
 
 export const useStore = create(
-    persist<Watchlist>(
-      (set, get) => ({
-        watchlist: [],
-        setWatchlist: (payload: movie) =>
-          set((state) => ({ watchlist: [...state.watchlist, payload] })),
-      }),
-      {
-        name: 'watchlist',
-        getStorage: () => localStorage,
-      }
-    )
+  persist<Watchlist>(
+    (set, get) => ({
+      watchlist: [],
+      addToWatchlist: (payload: movie) =>
+        set((state) => ({ watchlist: [...state.watchlist, payload] })),
+      removeFromWatchlist: (id: number) => {
+        set((state) => ({
+          watchlist: state.watchlist.filter((movie) => movie.id !== id),
+        }))
+      },
+    }),
+    {
+      name: 'watchlist',
+      getStorage: () => localStorage,
+    }
   )
+)

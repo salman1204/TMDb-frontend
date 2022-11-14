@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { Button, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useStore } from '../../store/watchlistStore'
@@ -9,9 +10,16 @@ interface Props {
 }
 
 const SingleMoviePreview: React.FC<Props> = ({ movie }) => {
-  const { watchlist, setWatchlist } = useStore()
+  const { watchlist, addToWatchlist, removeFromWatchlist } = useStore()
+  const [isMovieInWatchlist, setIsMovieInWatchlist] = useState(false)
 
   // console.log(watchlist)
+  useEffect(() => {
+    const checkMovieExists = watchlist.some(
+      (watchlist) => watchlist.id === movie.id
+    )
+    setIsMovieInWatchlist(checkMovieExists)
+  }, [])
 
   const handleRecntleyVisitedMovies = () => {
     if (localStorage.hasOwnProperty('movies')) {
@@ -45,7 +53,7 @@ const SingleMoviePreview: React.FC<Props> = ({ movie }) => {
       (watchlist) => watchlist.id === movie.id
     )
     if (!checkMovieExists) {
-      setWatchlist(movie)
+      addToWatchlist(movie)
     } else {
       return 0
     }
@@ -66,9 +74,15 @@ const SingleMoviePreview: React.FC<Props> = ({ movie }) => {
           {movie.title || movie.original_title}
         </h6>
       </Link>
-      <Button variant="warning" onClick={() => handleWatchList(movie)}>
-        Add to watchlist
-      </Button>
+      {isMovieInWatchlist ? (
+        <Button variant="warning" onClick={() => removeFromWatchlist(movie.id)}>
+          Remove from watchlist
+        </Button>
+      ) : (
+        <Button variant="warning" onClick={() => handleWatchList(movie)}>
+          Add to watchlist
+        </Button>
+      )}
     </Col>
   )
 }
