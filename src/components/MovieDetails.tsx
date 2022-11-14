@@ -51,7 +51,7 @@ const MovieDetails = () => {
         </Row>
       )}
       <RelatedMovies movieId={movieId} />
-      <RecentlyVisitedMovies />
+      {localStorage.hasOwnProperty('movies') && <RecentlyVisitedMovies />}
     </Container>
   )
 }
