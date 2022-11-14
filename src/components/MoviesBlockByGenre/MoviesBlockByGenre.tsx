@@ -55,7 +55,7 @@ const MoviesBlockByGenre: React.FC<Props> = ({ genre }) => {
             className="text-decoration-none text-dark"
             onClick={() => setCurrentGenre(genre.name)}
           >
-            See Popular {genre.name} Movies <HiChevronDoubleRight />{' '}
+            See More <HiChevronDoubleRight />
           </Link>
         </Button>
       </div>

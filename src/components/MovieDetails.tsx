@@ -13,7 +13,7 @@ const MovieDetails = () => {
   const { isLoading, data, error, refetch } = useQuery(
     [QUERY_MOVIES_DETAILS, movieId],
     () => getMovieDetails(movieId),
-    {refetchOnMount: 'always', refetchOnWindowFocus: false}
+    { refetchOnMount: 'always', refetchOnWindowFocus: false }
   )
 
   useEffect(() => {
@@ -51,7 +51,9 @@ const MovieDetails = () => {
         </Row>
       )}
       <RelatedMovies movieId={movieId} />
-      {localStorage.hasOwnProperty('movies') && <RecentlyVisitedMovies />}
+      {localStorage.hasOwnProperty('recently_visited_movies') && (
+        <RecentlyVisitedMovies />
+      )}
     </Container>
   )
 }

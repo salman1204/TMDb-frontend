@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Button, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import { useStore as recentlyVisitedUseStore } from '../../store/recentlyVisitedMoviesStore'
 import { useStore } from '../../store/watchlistStore'
 import { movie } from '../../utils/types/movie'
 import styles from './singleMoviePreview.module.css'
@@ -10,41 +11,38 @@ interface Props {
 }
 
 const SingleMoviePreview: React.FC<Props> = ({ movie }) => {
-  const { watchlist, addToWatchlist, removeFromWatchlist } = useStore()
   const [isMovieInWatchlist, setIsMovieInWatchlist] = useState(false)
+  const { watchlist, addToWatchlist, removeFromWatchlist } = useStore()
+  const {
+    recentlyVisitedMovies,
+    addToList,
+    removeFromRecentlyVisitedList,
+    removeLastRecentlyVisitedList,
+  } = recentlyVisitedUseStore()
 
-  // console.log(watchlist)
   useEffect(() => {
     const checkMovieExists = watchlist.some(
       (watchlist) => watchlist.id === movie.id
     )
     setIsMovieInWatchlist(checkMovieExists)
-  }, [])
+  }, [movie.id, watchlist])
 
-  const handleRecntleyVisitedMovies = () => {
-    if (localStorage.hasOwnProperty('movies')) {
-      let movies = JSON.parse(localStorage.getItem('movies') || '[]')
-      let isMovieExists = movies.findIndex(
-        (item: movie) => item.id === movie.id
-      )
-      if (isMovieExists >= 0) {
-        movies.splice(isMovieExists, 1)
-        movies.unshift(movie)
-        localStorage.setItem('movies', JSON.stringify([...movies]))
-        return 0
-      }
-      if (movies.length >= 5) {
-        movies.pop()
-        movies.unshift(movie)
-        localStorage.setItem('movies', JSON.stringify([...movies]))
-      } else {
-        movies.unshift(movie)
-        localStorage.setItem('movies', JSON.stringify([...movies]))
-      }
+  const handleRecntleyVisitedMovies = (movie: movie) => {
+    const checkMovieExists = recentlyVisitedMovies.some(
+      (recentlyVisitedMovie: { id: number }) =>
+        recentlyVisitedMovie.id === movie.id
+    )
+    if (checkMovieExists) {
+      removeFromRecentlyVisitedList(movie.id)
+      addToList(movie)
+      return 0
+    }
+
+    if (recentlyVisitedMovies.length >= 5) {
+      removeLastRecentlyVisitedList()
+      addToList(movie)
     } else {
-      let movies: any[] = []
-      movies.unshift(movie)
-      localStorage.setItem('movies', JSON.stringify([...movies]))
+      addToList(movie)
     }
   }
 
@@ -64,7 +62,7 @@ const SingleMoviePreview: React.FC<Props> = ({ movie }) => {
       <Link
         to={`/movies/${movie.id}`}
         className="text-decoration-none"
-        onClick={() => handleRecntleyVisitedMovies()}
+        onClick={() => handleRecntleyVisitedMovies(movie)}
       >
         <img
           src={`https://image.tmdb.org/t/p/w154/${movie.poster_path}`}

@@ -24,7 +24,7 @@ const Movies = () => {
         genresList?.genres?.map((genre: genreProps) => {
           return <MoviesBlockByGenre key={genre.id} genre={genre} />
         })}
-      {localStorage.hasOwnProperty('movies') && <RecentlyVisitedMovies />}
+      {localStorage.hasOwnProperty('recently_visited_movies') && <RecentlyVisitedMovies />}
     </Container>
   )
 }
