@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
+import { nanoid } from 'nanoid'
 import { Button, Row } from 'react-bootstrap'
 import { HiChevronDoubleRight } from 'react-icons/hi'
 import { Link } from 'react-router-dom'
@@ -7,7 +8,7 @@ import { handleShuffleMovies } from '../../services/handleShuffleMovies'
 import { QUERY_MOVIES_LIST } from '../../utils/constants/queryKeys'
 import { genreProps } from '../../utils/types/genre'
 import { movie } from '../../utils/types/movie'
-import SingleMoviePreview from '../SingleMoviePreview'
+import SingleMoviePreview from '../SingleMoviePreview/SingleMoviePreview'
 import styles from './moviesBlockByGenre.module.css'
 interface Props {
   genre: genreProps
@@ -36,7 +37,7 @@ const MoviesBlockByGenre: React.FC<Props> = ({ genre }) => {
       </h1>
       <div className="d-flex justify-content-center flex-wrap my-2 mx-auto">
         {randomMovies?.map((movie: movie) => {
-          return <SingleMoviePreview key={movie.id} movie={movie} />
+          return <SingleMoviePreview key={nanoid()} movie={movie} />
         })}
       </div>
       <div className="d-flex justify-content-center justify-content-lg-end mt-3 ">

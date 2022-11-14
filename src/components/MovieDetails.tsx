@@ -1,19 +1,27 @@
 import { useQuery } from '@tanstack/react-query'
+import { useEffect } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
-import { useParams } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 import { getMovieDetails } from '../apis/movies'
 import { QUERY_MOVIES_DETAILS } from '../utils/constants/queryKeys'
+import RecentlyVisitedMovies from './RecentlyVisitedMovies'
 import RelatedMovies from './RelatedMovies'
 
 const MovieDetails = () => {
   const { movieId } = useParams()
+  const { pathname } = useLocation()
   const { isLoading, data, error, refetch } = useQuery(
     [QUERY_MOVIES_DETAILS, movieId],
     () => getMovieDetails(movieId),
     {}
   )
 
-  // console.log(data)
+  useEffect(() => {
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }, 0)
+  }, [pathname])
+
   return (
     <Container>
       {!isLoading && (
@@ -43,6 +51,7 @@ const MovieDetails = () => {
         </Row>
       )}
       <RelatedMovies movieId={movieId} />
+      <RecentlyVisitedMovies />
     </Container>
   )
 }

@@ -1,12 +1,12 @@
 import { useQuery } from '@tanstack/react-query'
+import { nanoid } from 'nanoid'
 import { Container } from 'react-bootstrap'
 import { getRelatedMovies } from '../apis/movies'
 import { handleShuffleMovies } from '../services/handleShuffleMovies'
 import { QUERY_RELATED_MOVIES } from '../utils/constants/queryKeys'
 import { movie } from '../utils/types/movie'
 import styles from './MoviesBlockByGenre/moviesBlockByGenre.module.css'
-import SingleMoviePreview from './SingleMoviePreview'
-
+import SingleMoviePreview from './SingleMoviePreview/SingleMoviePreview'
 interface Props {
   movieId: string | undefined
 }
@@ -17,8 +17,6 @@ const RelatedMovies: React.FC<Props> = ({ movieId }) => {
     () => getRelatedMovies(movieId),
     { refetchOnMount: 'always', refetchOnWindowFocus: false }
   )
-
-  //   console.log(data)
 
   let shuffleMovies
 
@@ -32,7 +30,7 @@ const RelatedMovies: React.FC<Props> = ({ movieId }) => {
       </h1>
       <div className="d-flex justify-content-center flex-wrap py-2 mx-auto">
         {shuffleMovies?.map((movie: movie) => {
-          return <SingleMoviePreview key={movie.id} movie={movie} />
+          return <SingleMoviePreview key={nanoid()} movie={movie} />
         })}
       </div>
     </Container>
