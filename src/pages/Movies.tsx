@@ -14,7 +14,6 @@ const Movies = () => {
     isLoading,
     data: genresList,
     error,
-    refetch,
   } = useQuery([QUERY_GENRES_LIST], () => getGenresList(), {
     refetchOnMount: 'always',
     refetchOnWindowFocus: false,

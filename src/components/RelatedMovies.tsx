@@ -11,7 +11,7 @@ interface Props {
 }
 
 const RelatedMovies: React.FC<Props> = ({ movieId }) => {
-  const { isLoading, data, error, refetch } = useQuery(
+  const { isLoading, data, error } = useQuery(
     [QUERY_RELATED_MOVIES, movieId],
     () => getRelatedMovies(movieId),
     { refetchOnMount: 'always', refetchOnWindowFocus: false }

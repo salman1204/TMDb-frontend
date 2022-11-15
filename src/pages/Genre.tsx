@@ -6,21 +6,23 @@ import { getTopMoviesByGenre } from '../apis/movies'
 import RecentlyVisitedMovies from '../components/RecentlyVisitedMovies'
 import SingleMoviePreview from '../components/SingleMoviePreview/SingleMoviePreview'
 import { useStore } from '../store/genreStore'
+import { useStore as recentlyVisitedUseStore } from '../store/recentlyVisitedMoviesStore'
 import { QUERY_TOP_MOVIES_BY_GENRE } from '../utils/constants/queryKeys'
 import { movie } from '../utils/types/movie'
 
 const Genre = () => {
   const { genreId } = useParams()
   const { currentGenre } = useStore()
+  const { recentlyVisitedMovies } = recentlyVisitedUseStore()
 
-  const { isLoading, data, error, refetch } = useQuery(
+  const { isLoading, data, error } = useQuery(
     [QUERY_TOP_MOVIES_BY_GENRE, 'genreId'],
     () => getTopMoviesByGenre(genreId),
     { refetchOnMount: 'always', refetchOnWindowFocus: false }
   )
 
   return (
-    <Container className='pt-5 '>
+    <Container className="pt-5 ">
       <h2
         className={`mb-2 mb-md-3 d-flex flex-start text-uppercase`}
         style={{ color: '#f5c518', borderLeft: '6px solid #f5c518' }}
@@ -36,7 +38,7 @@ const Genre = () => {
             return <SingleMoviePreview key={nanoid()} movie={movie} />
           })}
       </div>
-      <RecentlyVisitedMovies />
+      {recentlyVisitedMovies.length > 0 && <RecentlyVisitedMovies />}
     </Container>
   )
 }
