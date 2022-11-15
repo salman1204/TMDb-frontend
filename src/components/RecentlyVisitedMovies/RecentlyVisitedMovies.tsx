@@ -1,9 +1,9 @@
 import { nanoid } from 'nanoid'
 import { Row } from 'react-bootstrap'
-import { useStore } from '../store/recentlyVisitedMoviesStore'
-import { movie } from '../utils/types/movie'
-import styles from './MoviesBlockByGenre/moviesBlockByGenre.module.css'
-import SingleMoviePreview from './SingleMoviePreview/SingleMoviePreview'
+import { useStore } from '../../store/recentlyVisitedMoviesStore'
+import { movie } from '../../utils/types/movie'
+import SingleMoviePreview from '../SingleMoviePreview/SingleMoviePreview'
+import styles from './recentlyVisitedMovies.module.css'
 
 const RecentlyVisitedMovies = () => {
   const { recentlyVisitedMovies } = useStore()

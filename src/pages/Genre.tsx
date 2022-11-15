@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid'
 import { Container } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
 import { getTopMoviesByGenre } from '../apis/movies'
-import RecentlyVisitedMovies from '../components/RecentlyVisitedMovies'
+import RecentlyVisitedMovies from '../components/RecentlyVisitedMovies/RecentlyVisitedMovies'
 import SingleMoviePreview from '../components/SingleMoviePreview/SingleMoviePreview'
 import { useStore } from '../store/genreStore'
 import { useStore as recentlyVisitedUseStore } from '../store/recentlyVisitedMoviesStore'
@@ -21,10 +21,17 @@ const Genre = () => {
     { refetchOnMount: 'always', refetchOnWindowFocus: false }
   )
 
+  const sortedMoviesByRating = data?.results
+    ?.slice(0, 10)
+    ?.sort(
+      (a: { vote_average: number }, b: { vote_average: number }) =>
+        b.vote_average - a.vote_average
+    )
+
   return (
     <Container className="pt-5 ">
       <h2
-        className={`mb-2 mb-md-3 d-flex flex-start text-uppercase`}
+        className={`mb-2 mb-md-3 d-flex flex-start`}
         style={{ color: '#f5c518', borderLeft: '6px solid #f5c518' }}
       >
         <span className="ms-3 ">
@@ -34,7 +41,7 @@ const Genre = () => {
 
       <div className="mb-5 d-flex justify-content-center flex-wrap mx-auto row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5">
         {!isLoading &&
-          data?.results?.slice(0, 10)?.map((movie: movie) => {
+          sortedMoviesByRating?.map((movie: movie) => {
             return <SingleMoviePreview key={nanoid()} movie={movie} />
           })}
       </div>

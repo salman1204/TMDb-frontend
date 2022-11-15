@@ -8,7 +8,7 @@ import { getMovieDetails } from '../apis/movies'
 import { useStore } from '../store/recentlyVisitedMoviesStore'
 import { QUERY_MOVIES_DETAILS } from '../utils/constants/queryKeys'
 import CastAndCrew from './CastAndCrew'
-import RecentlyVisitedMovies from './RecentlyVisitedMovies'
+import RecentlyVisitedMovies from './RecentlyVisitedMovies/RecentlyVisitedMovies'
 import RelatedMovies from './RelatedMovies'
 import Trailer from './Trailer'
 

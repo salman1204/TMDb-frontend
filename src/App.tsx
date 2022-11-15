@@ -27,9 +27,9 @@ function App() {
   )
 
   return (
-    <MainLayout>
-      <div className={styles.container}>
-        <Suspense fallback={fallBack}>
+    <Suspense fallback={fallBack}>
+      <MainLayout>
+        <div className={styles.container}>
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Navigate to="/movies" />} />
@@ -40,9 +40,9 @@ function App() {
               <Route path="*" element={<PageNotFound />} />
             </Routes>
           </BrowserRouter>
-        </Suspense>
-      </div>
-    </MainLayout>
+        </div>
+      </MainLayout>
+    </Suspense>
   )
 }
 
