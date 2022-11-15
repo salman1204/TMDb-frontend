@@ -10,9 +10,12 @@ const RecentlyVisitedMovies = () => {
 
   return (
     <Row className="mx-auto">
-      <h1 className={`my-3 ${styles.strike}`} style={{ color: '#f5c518' }}>
-        <span>Recently Visited Movies</span>
-      </h1>
+      <h2
+        className={`my-3 text-uppercase ${styles.strike}`}
+        style={{ color: '#f5c518' }}
+      >
+        <span>Recently viewed</span>
+      </h2>
       <div className="d-flex justify-content-start flex-wrap my-2 mb-5 mx-auto">
         {recentlyVisitedMovies?.map((movie: movie) => {
           return <SingleMoviePreview key={nanoid()} movie={movie} />

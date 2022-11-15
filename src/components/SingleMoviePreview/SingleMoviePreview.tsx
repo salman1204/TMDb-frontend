@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
-import { Button, Col } from 'react-bootstrap'
+import { Button, Col, Row } from 'react-bootstrap'
+import { AiFillStar } from 'react-icons/ai'
+import { BsDashLg, BsGraphUp, BsPlusLg } from 'react-icons/bs'
 import { Link } from 'react-router-dom'
 import { useStore as recentlyVisitedUseStore } from '../../store/recentlyVisitedMoviesStore'
 import { useStore } from '../../store/watchlistStore'
@@ -58,7 +60,9 @@ const SingleMoviePreview: React.FC<Props> = ({ movie }) => {
   }
 
   return (
-    <Col className={`text-center mt-5 ${styles.zoom}`}>
+    <Col
+      className={`text-center mt-5 text-light d-flex flex-column justify-content-between ${styles.zoom}`}
+    >
       <Link
         to={`/movies/${movie.id}`}
         className="text-decoration-none"
@@ -72,15 +76,38 @@ const SingleMoviePreview: React.FC<Props> = ({ movie }) => {
           {movie.title || movie.original_title}
         </h6>
       </Link>
-      {isMovieInWatchlist ? (
-        <Button variant="warning" onClick={() => removeFromWatchlist(movie.id)}>
-          Remove from watchlist
-        </Button>
-      ) : (
-        <Button variant="warning" onClick={() => handleWatchList(movie)}>
-          Add to watchlist
-        </Button>
-      )}
+      <Row>
+        <Col className="d-flex justify-content-center">
+          <h6 className="mx-2">
+            <AiFillStar color="#f5c518" />{' '}
+            {Number(movie?.vote_average).toFixed(1)}
+          </h6>
+          <h6 className="mx-2">
+            <BsGraphUp color="#f5c518" /> {~~movie?.popularity}
+          </h6>
+        </Col>
+      </Row>
+      <Row className="mx-1 mx-md-4 mt-3">
+        <Col className="d-flex justify-content-center">
+          {isMovieInWatchlist ? (
+            <Button
+              variant="warning"
+              onClick={() => removeFromWatchlist(movie.id)}
+              className="px-3 px-md-4"
+            >
+              <BsDashLg color='#ff4d4d'/> Watchlist
+            </Button>
+          ) : (
+            <Button
+              variant="warning"
+              onClick={() => handleWatchList(movie)}
+              className="px-3 px-md-4"
+            >
+              <BsPlusLg color='#39ac39'/> Watchlist
+            </Button>
+          )}
+        </Col>
+      </Row>
     </Col>
   )
 }

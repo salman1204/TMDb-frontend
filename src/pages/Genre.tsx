@@ -8,7 +8,6 @@ import SingleMoviePreview from '../components/SingleMoviePreview/SingleMoviePrev
 import { useStore } from '../store/genreStore'
 import { QUERY_TOP_MOVIES_BY_GENRE } from '../utils/constants/queryKeys'
 import { movie } from '../utils/types/movie'
-import styles from '../components/MoviesBlockByGenre/moviesBlockByGenre.module.css'
 
 const Genre = () => {
   const { genreId } = useParams()
@@ -21,12 +20,17 @@ const Genre = () => {
   )
 
   return (
-    <Container>
-      <div className="text-light text-center"></div>
-      <h1 className={`py-3 ${styles.strike}`} style={{ color: '#f5c518' }}>
-        <span>Top 10 {currentGenre} Movies</span>
-      </h1>
-      <div className="d-flex justify-content-center flex-wrap mx-auto row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5">
+    <Container className='pt-5 '>
+      <h2
+        className={`mb-2 mb-md-3 d-flex flex-start text-uppercase`}
+        style={{ color: '#f5c518', borderLeft: '6px solid #f5c518' }}
+      >
+        <span className="ms-3 ">
+          <span>Popular {currentGenre} Movies</span>
+        </span>
+      </h2>
+
+      <div className="mb-5 d-flex justify-content-center flex-wrap mx-auto row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5">
         {!isLoading &&
           data?.results?.slice(0, 10)?.map((movie: movie) => {
             return <SingleMoviePreview key={nanoid()} movie={movie} />
