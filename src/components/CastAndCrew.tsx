@@ -47,7 +47,7 @@ const CastAndCrew: React.FC<Props> = ({ movieId }) => {
             </span>
           </h2>
 
-          <div className="d-flex justify-content-center flex-wrap py-2 mx-auto">
+          <div className="d-flex justify-content-center flex-wrap py-2 ms-auto">
             {data?.crew.slice(0, 12).map((crew: crew) => {
               return <CrewItem key={nanoid()} crew={crew} />
             })}

@@ -10,6 +10,7 @@ import { QUERY_MOVIES_DETAILS } from '../utils/constants/queryKeys'
 import CastAndCrew from './CastAndCrew'
 import RecentlyVisitedMovies from './RecentlyVisitedMovies'
 import RelatedMovies from './RelatedMovies'
+import Trailer from './Trailer'
 
 const MovieDetails = () => {
   const { movieId } = useParams()
@@ -75,6 +76,7 @@ const MovieDetails = () => {
         </Row>
       )}
       <CastAndCrew movieId={movieId} />
+      <Trailer movieId={movieId} />
       <RelatedMovies movieId={movieId} />
       {recentlyVisitedMovies.length > 0 && <RecentlyVisitedMovies />}
     </Container>

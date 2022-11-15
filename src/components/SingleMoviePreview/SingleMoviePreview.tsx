@@ -95,7 +95,7 @@ const SingleMoviePreview: React.FC<Props> = ({ movie }) => {
               onClick={() => removeFromWatchlist(movie.id)}
               className="px-3 px-md-4"
             >
-              <BsDashLg color='#ff4d4d'/> Watchlist
+              <BsDashLg color="#ff4d4d" /> Watchlist
             </Button>
           ) : (
             <Button
@@ -103,7 +103,7 @@ const SingleMoviePreview: React.FC<Props> = ({ movie }) => {
               onClick={() => handleWatchList(movie)}
               className="px-3 px-md-4"
             >
-              <BsPlusLg color='#39ac39'/> Watchlist
+              <BsPlusLg color="#39ac39" /> Watchlist
             </Button>
           )}
         </Col>

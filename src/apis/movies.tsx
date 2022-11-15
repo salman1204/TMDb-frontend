@@ -43,3 +43,14 @@ export const getRelatedMovies = async (movieId: string | undefined) => {
     console.log(error)
   }
 }
+
+export const getMovieTrailer = async (movieId: string | undefined) => {
+  try {
+    const response = await axios.get(
+      `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=cd890f94a756b1518a2a17617a5b430e&language=en-US`
+    )
+    return response.data
+  } catch (error) {
+    console.log(error)
+  }
+}

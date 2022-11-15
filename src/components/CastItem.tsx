@@ -5,9 +5,9 @@ interface Props {
   cast: cast
 }
 const CastItem: React.FC<Props> = ({ cast }) => {
-  console.log(cast)
+
   return (
-    <Col className='text-center my-3 text-light text-center' xs={6} md ={4} lg={2}>
+    <Col className='text-center my-3 text-light' xs={6} md ={4} lg={2}>
       <img
         src={
           cast?.profile_path !== null

@@ -8,13 +8,13 @@ const Watchlist = () => {
   const { watchlist } = useStore()
 
   return (
-    <Container className="min-vh-100 pt-5 overflow-hidden">
+    <Container className="min-vh-100 pt-5 overflow-hidden ">
       <Row>
         <h2
-          className={`mb-2 mb-md-3 d-flex flex-start text-uppercase `}
+          className={`ms-3 mb-2 mb-md-3 d-flex flex-start text-uppercase `}
           style={{ color: '#f5c518', borderLeft: '6px solid #f5c518' }}
         >
-          <span className="ms-3">MY Watchlist</span>
+          <span className="ms-2">MY Watchlist</span>
         </h2>
         <div className="d-flex justify-content-center flex-wrap py-5 mx-auto">
           {watchlist?.map((movie: movie) => {
