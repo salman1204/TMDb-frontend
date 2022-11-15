@@ -1,26 +1,46 @@
+import { lazy, Suspense } from 'react'
+import { Spinner } from 'react-bootstrap'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import styles from './app.module.css'
-import MovieDetails from './components/MovieDetails'
-import MainLayout from './layouts/MainLayout/MainLayout'
-import Genre from './pages/Genre'
-import Movies from './pages/Movies'
-import PageNotFound from './pages/PageNotFound'
-import Watchlist from './pages/Watchlist'
+
+const Movies = lazy(() => import('./pages/Movies'))
+const Watchlist = lazy(() => import('./pages/Watchlist'))
+const Genre = lazy(() => import('./pages/Genre'))
+const MainLayout = lazy(() => import('./layouts/MainLayout/MainLayout'))
+const MovieDetails = lazy(() => import('./components/MovieDetails'))
+const PageNotFound = lazy(() => import('./pages/PageNotFound'))
 
 function App() {
+  const fallBack = (
+    <div
+      style={{
+        minHeight: '100vh',
+        background: 'linear-gradient(180deg, #1F1F1F 0%, #000000 100%)',
+      }}
+    >
+      <div className={styles.spinner}>
+        <Spinner animation="grow" variant="success" />
+        <Spinner animation="grow" variant="danger" />
+        <Spinner animation="grow" variant="warning" />
+      </div>
+    </div>
+  )
+
   return (
     <MainLayout>
       <div className={styles.container}>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Navigate to="/movies" />} />
-            <Route path="/movies" element={<Movies />} />
-            <Route path="/genre/:genreId" element={<Genre />} />
-            <Route path="/movies/:movieId" element={<MovieDetails />} />
-            <Route path="/watchlist" element={<Watchlist />} />
-            <Route path="*" element={<PageNotFound />} />
-          </Routes>
-        </BrowserRouter>
+        <Suspense fallback={fallBack}>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Navigate to="/movies" />} />
+              <Route path="/movies" element={<Movies />} />
+              <Route path="/genre/:genreId" element={<Genre />} />
+              <Route path="/movies/:movieId" element={<MovieDetails />} />
+              <Route path="/watchlist" element={<Watchlist />} />
+              <Route path="*" element={<PageNotFound />} />
+            </Routes>
+          </BrowserRouter>
+        </Suspense>
       </div>
     </MainLayout>
   )
