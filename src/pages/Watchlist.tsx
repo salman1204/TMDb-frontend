@@ -11,12 +11,12 @@ const Watchlist = () => {
     <Container className="min-vh-100 pt-5 overflow-hidden ">
       <Row>
         <h2
-          className={`ms-3 mb-2 mb-md-3 d-flex flex-start text-uppercase `}
+          className={`ms-3 mb-1 mb-md-3 d-flex flex-start text-uppercase `}
           style={{ color: '#f5c518', borderLeft: '6px solid #f5c518' }}
         >
           <span className="ms-2">MY Watchlist</span>
         </h2>
-        <div className="d-flex justify-content-center flex-wrap py-5 mx-auto">
+        <div className="d-flex justify-content-center flex-wrap py-md-3 mx-auto">
           {watchlist?.map((movie: movie) => {
             return <SingleMoviePreview key={nanoid()} movie={movie} />
           })}
