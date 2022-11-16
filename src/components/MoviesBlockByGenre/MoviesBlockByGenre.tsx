@@ -19,7 +19,7 @@ interface Props {
 const MoviesBlockByGenre: React.FC<Props> = ({ genre }) => {
   const { setCurrentGenre } = useStore()
 
-  const { isLoading, data, error } = useQuery(
+  const { isLoading, data } = useQuery(
     [QUERY_MOVIES_LIST, genre.id],
     () => getMoviesListByGenre(genre.id),
     { refetchOnMount: 'always', refetchOnWindowFocus: false }

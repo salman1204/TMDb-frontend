@@ -6,7 +6,7 @@ import styles from './app.module.css'
 const Movies = lazy(() => import('./pages/Movies'))
 const Watchlist = lazy(() => import('./pages/Watchlist'))
 const Genre = lazy(() => import('./pages/Genre'))
-const MainLayout = lazy(() => import('./layouts/MainLayout/MainLayout'))
+const MainLayout = lazy(() => import('./components/layouts/MainLayout/MainLayout'))
 const MovieDetails = lazy(() => import('./components/MovieDetails'))
 const PageNotFound = lazy(() => import('./pages/PageNotFound'))
 

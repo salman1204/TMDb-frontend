@@ -10,7 +10,7 @@ interface Props {
 }
 
 const Trailer: React.FC<Props> = ({ movieId }) => {
-  const { isLoading, data, error } = useQuery(
+  const { isLoading, data } = useQuery(
     [QUERY_MOVIE_TRAILER, movieId],
     () => getMovieTrailer(movieId),
     { refetchOnWindowFocus: false }

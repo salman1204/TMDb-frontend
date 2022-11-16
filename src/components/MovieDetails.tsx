@@ -17,7 +17,7 @@ const MovieDetails = () => {
   const { pathname } = useLocation()
   const { recentlyVisitedMovies } = useStore()
 
-  const { isLoading, data, error } = useQuery(
+  const { isLoading, data } = useQuery(
     [QUERY_MOVIES_DETAILS, movieId],
     () => getMovieDetails(movieId),
     { refetchOnMount: 'always', refetchOnWindowFocus: false }

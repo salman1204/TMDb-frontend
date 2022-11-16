@@ -10,14 +10,14 @@ import { genreProps } from '../utils/types/genre'
 const Movies = () => {
   const { recentlyVisitedMovies } = useStore()
 
-  const {
-    isLoading,
-    data: genresList,
-    error,
-  } = useQuery([QUERY_GENRES_LIST], () => getGenresList(), {
-    refetchOnMount: 'always',
-    refetchOnWindowFocus: false,
-  })
+  const { isLoading, data: genresList } = useQuery(
+    [QUERY_GENRES_LIST],
+    () => getGenresList(),
+    {
+      refetchOnMount: 'always',
+      refetchOnWindowFocus: false,
+    }
+  )
 
   // console.log(data)
   return (

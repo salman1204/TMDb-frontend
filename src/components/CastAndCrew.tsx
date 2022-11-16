@@ -13,7 +13,7 @@ interface Props {
 }
 
 const CastAndCrew: React.FC<Props> = ({ movieId }) => {
-  const { isLoading, data, error } = useQuery(
+  const { isLoading, data } = useQuery(
     [QUERY_CREDITS, movieId],
     () => getCredits(movieId),
     { refetchOnWindowFocus: false }

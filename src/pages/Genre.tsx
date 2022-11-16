@@ -15,7 +15,7 @@ const Genre = () => {
   const { currentGenre } = useStore()
   const { recentlyVisitedMovies } = recentlyVisitedUseStore()
 
-  const { isLoading, data, error } = useQuery(
+  const { isLoading, data } = useQuery(
     [QUERY_TOP_MOVIES_BY_GENRE, 'genreId'],
     () => getTopMoviesByGenre(genreId),
     { refetchOnMount: 'always', refetchOnWindowFocus: false }
