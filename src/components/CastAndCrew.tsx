@@ -36,6 +36,9 @@ const CastAndCrew: React.FC<Props> = ({ movieId }) => {
             {data?.cast.slice(0, 12).map((cast: cast) => {
               return <CastItem key={nanoid()} cast={cast} />
             })}
+            {data?.cast.length === 0 && (
+              <h4 className="text-center py-1 ">No cast available</h4>
+            )}
           </div>
 
           <h2
@@ -47,10 +50,13 @@ const CastAndCrew: React.FC<Props> = ({ movieId }) => {
             </span>
           </h2>
 
-          <div className="d-flex justify-content-center flex-wrap py-2 ms-auto">
+          <div className="d-flex justify-content-center flex-wrap py-3 ms-auto">
             {data?.crew.slice(0, 12).map((crew: crew) => {
               return <CrewItem key={nanoid()} crew={crew} />
             })}
+             {data?.crew.length === 0 && (
+              <h4 className="text-center py-1 ">No crew available</h4>
+            )}
           </div>
         </div>
       )}

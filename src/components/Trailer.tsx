@@ -21,7 +21,7 @@ const Trailer: React.FC<Props> = ({ movieId }) => {
   })
 
   return (
-    <Container className="py-5">
+    <Container className="py-2">
       {!isLoading && (
         <div>
           <h2
@@ -35,7 +35,7 @@ const Trailer: React.FC<Props> = ({ movieId }) => {
           {isTrailerExists ? (
             <YoutubeEmbed embedId={isTrailerExists?.key} />
           ) : (
-            <h4 className='text-center border border-warning py-3 text-danger'>Sorry !! No Trailer Available.</h4>
+            <h4 className='text-center py-1'>No Trailer Available.</h4>
           )}
         </div>
       )}

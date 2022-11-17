@@ -20,7 +20,7 @@ const CrewItem: React.FC<Props> = ({ crew }) => {
         }
         alt="Crew_Photo"
         className="img-fluid rounded-circle mb-3"
-        style={{ height: '7rem', width: '7.5rem' }}
+        style={{ height: '7rem', width: '7.5rem', objectFit: 'cover' }}
       />
       <h6>{crew?.name}</h6>
       <h6 style={{ color: '#f5c518' }}>{crew?.job}</h6>

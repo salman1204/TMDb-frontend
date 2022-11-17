@@ -20,6 +20,9 @@ const Watchlist = () => {
           {watchlist?.map((movie: movie) => {
             return <SingleMoviePreview key={nanoid()} movie={movie} />
           })}
+          {watchlist.length === 0 && (
+            <h4 className="py-1 ">Your Watchlist is empty.</h4>
+          )}
         </div>
       </Row>
     </Container>

@@ -16,7 +16,7 @@ const CastItem: React.FC<Props> = ({ cast }) => {
         }
         alt="Cast_Photo"
         className="img-fluid rounded-circle mb-3"
-        style={{ height: '7rem', width: '7.5rem' }}
+        style={{ height: '7rem', width: '7.5rem', objectFit:'cover' }}
       />
       <h6>{cast?.name}</h6>
     </Col>
