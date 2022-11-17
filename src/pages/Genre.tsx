@@ -39,7 +39,7 @@ const Genre = () => {
         </span>
       </h2>
 
-      <div className="mb-5 d-flex justify-content-center flex-wrap mx-auto row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5">
+      <div className="mb-5 d-flex justify-content-center flex-wrap mx-auto">
         {!isLoading &&
           sortedMoviesByRating?.map((movie: movie) => {
             return <SingleMoviePreview key={nanoid()} movie={movie} />
