@@ -18,7 +18,7 @@ const CrewItem: React.FC<Props> = ({ crew }) => {
             ? `https://image.tmdb.org/t/p/w154/${crew?.profile_path}`
             : `https://i.ibb.co/0fFVykj/depositphotos-137014128-stock-illustration-user-profile-icon.webp`
         }
-        alt="BigCo Inc. logo"
+        alt="Crew_Photo"
         className="img-fluid rounded-circle mb-3"
         style={{ height: '7rem', width: '7.5rem' }}
       />

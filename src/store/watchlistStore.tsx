@@ -13,7 +13,7 @@ export const useStore = create(
     (set, get) => ({
       watchlist: [],
       addToWatchlist: (payload: movie) =>
-        set((state) => ({ watchlist: [...state.watchlist, payload] })),
+        set((state) => ({ watchlist: [payload, ...state.watchlist] })),
       removeFromWatchlist: (id: number) => {
         set((state) => ({
           watchlist: state.watchlist.filter((movie) => movie.id !== id),

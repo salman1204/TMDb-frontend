@@ -62,6 +62,7 @@ const SingleMoviePreview: React.FC<Props> = ({ movie }) => {
   return (
     <Col
       className={`text-center mt-5 text-light d-flex flex-column justify-content-between ${styles.zoom}`}
+      style={{flex:'1 1 20%'}}
     >
       <Link
         to={`/movies/${movie.id}`}
@@ -70,7 +71,7 @@ const SingleMoviePreview: React.FC<Props> = ({ movie }) => {
       >
         <img
           src={`https://image.tmdb.org/t/p/w154/${movie.poster_path}`}
-          alt="BigCo Inc. logo"
+          alt="movie poster"
         />
         <h6 className="text-light my-3 mx-3 ">
           {movie.title || movie.original_title}

@@ -37,7 +37,7 @@ const MovieDetails = () => {
           <Col lg={6} className="d-flex justify-content-center">
             <img
               src={`https://image.tmdb.org/t/p/w342/${data?.poster_path}`}
-              alt="BigCo Inc. logo"
+              alt="Movie_Poster"
             />
           </Col>
           <Col>
